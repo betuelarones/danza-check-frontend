@@ -1,0 +1,128 @@
+@import 'tailwindcss';
+
+/* =====================================================================
+   DanzaCheck - tema
+   Paleta roja auténtica (no rosada) con neutros cálidos apenas
+   teñidos, para que el rojo sea el único color que grite. Radios
+   cortos: la app se ve angular, no hinchada.
+   ===================================================================== */
+
+@theme {
+  /* Ancho maximo del contenido de la app */
+  --container-content: 72rem;
+
+  --font-sans: 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial,
+    sans-serif;
+  --font-mono: 'Cascadia Mono', Consolas, 'Roboto Mono', ui-monospace, monospace;
+
+  /* Escala roja. El 500 ya tiene 4.8:1 de contraste sobre blanco, asi
+     que sirve para texto normal y para botones con texto blanco. */
+  --color-brand-50: #fef2f2;
+  --color-brand-100: #fee2e2;
+  --color-brand-200: #fecaca;
+  --color-brand-300: #fca5a5;
+  --color-brand-400: #f87171;
+  --color-brand-500: #dc2626;
+  --color-brand-600: #b91c1c;
+  --color-brand-700: #991b1b;
+  --color-brand-800: #7f1d1d;
+  --color-brand-900: #5b0f0f;
+  --color-brand-950: #2a0505;
+
+  /* Neutros calidos, con un punto de rojo y nada mas */
+  --color-ink-50: #faf9f9;
+  --color-ink-100: #f3f1f1;
+  --color-ink-200: #e5e2e2;
+  --color-ink-300: #c9c4c4;
+  --color-ink-400: #9b9494;
+  --color-ink-500: #756e6e;
+  --color-ink-600: #585252;
+  --color-ink-700: #403b3b;
+  --color-ink-800: #2b2727;
+  --color-ink-900: #1a1717;
+
+  /* Superficies y semanticos */
+  --color-canvas: #faf9f9;
+  --color-surface: #ffffff;
+  --color-success: #1d7a4d;
+  --color-success-soft: #e6f4ec;
+  --color-success-border: #b3dbc6;
+  --color-warning: #96620d;
+  --color-warning-soft: #fbf0dc;
+  --color-warning-border: #e8d0a2;
+  /* El rojo de marca ya ocupa el lugar del error, asi que el peligro es
+     un burdo mas apagado para que no se confunda con un boton normal. */
+  --color-danger: #8f1d13;
+  --color-danger-soft: #fceceb;
+  --color-danger-border: #eec2bd;
+
+  /* Sombras con tinte rojo */
+  --shadow-soft: 0 1px 3px rgb(42 5 5 / 0.08), 0 1px 2px rgb(42 5 5 / 0.04);
+  --shadow-card: 0 6px 20px rgb(42 5 5 / 0.1);
+  --shadow-float: 0 18px 44px rgb(42 5 5 / 0.16);
+
+  /* Animaciones propias */
+  --animate-giro: giro 800ms linear infinite;
+  --animate-barrido: barrido 1.3s ease infinite;
+  --animate-brillo: brillo 1.4s ease infinite;
+}
+
+@keyframes giro {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes barrido {
+  from {
+    background-position: 100% 50%;
+  }
+  to {
+    background-position: 0 50%;
+  }
+}
+
+@keyframes brillo {
+  from {
+    background-position: 100% 50%;
+  }
+  to {
+    background-position: 0 50%;
+  }
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply min-h-dvh bg-canvas font-sans text-base leading-relaxed text-ink-900 antialiased;
+    background-image:
+      radial-gradient(70rem 40rem at 100% -10%, var(--color-brand-100) 0%, transparent 60%),
+      radial-gradient(50rem 30rem at -10% 0%, var(--color-brand-50) 0%, transparent 55%);
+    background-repeat: no-repeat;
+  }
+
+  h1,
+  h2,
+  h3 {
+    @apply font-semibold tracking-tight text-balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  a {
+    @apply text-brand-700 underline-offset-4;
+  }
+
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-brand-500;
+  }
+
+  ::selection {
+    @apply bg-brand-200 text-brand-950;
+  }
+}
